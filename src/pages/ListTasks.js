@@ -1,34 +1,36 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { getTasks } from '../services/db';
 
 function ListTasks() {
-    const TASKS = [{
-        id: 1,
-        title: 'titulo',
-        descripcion: 'hola mundo',
-        done: false
-    }, {
-        id: 2,
-        title: 'titulo2',
-        descripcion: 'hola mundo2',
-        done: false
-    }, {
-        id: 3,
-        title: 'titulo3',
-        descripcion: 'hola mundo3',
-        done: false
-    }]
+    const [tasks, setTasks] = useState(null)
+
+    useEffect(() => {
+        getTasksData()
+    }, [])
+
+    const getTasksData = async () => {
+        const tasksData = await getTasks()
+        console.log(tasksData.docs);
+        setTasks(tasksData.docs)
+    }
 
     return (<div>
         {
-            TASKS.map(e =>
+            tasks && tasks.map(e =>
                 <div className='card' key={e.id}>
                     <p>id:{e.id}</p>
-                    <h4 className='title'>{e.title}</h4>
-                    <p>{e.descripcion}</p>
-                    <input type={'checkbox'} defaultChecked={e.done} />                    
+                    <h4 className='title'>Titulo</h4>
+                    <p className='title'>{e.data().title}</p>
+                    <h4 className='descripcion'>Descripcion</h4>
+                    <p>{e.data().description}</p>
+                    <h4 className='hecho'>Hecho</h4>
+                    <input type={'checkbox'} defaultChecked={e.data().done} />
                     {/* `/users/$e.id` */}
-                </div>
+                    <div>
+                        <button>Update</button>
+                        <button>Delete</button>
+                    </div>
+                </div>,
             )
         }
     </div>);
