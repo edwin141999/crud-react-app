@@ -1,9 +1,12 @@
-function updateTask() {
-    return ( 
+import { useParams } from "react-router-dom";
+
+export default function UpdateTask() {
+    let { id } = useParams();
+    return (
         <div>
-            update task
+            update task, id:{id}
         </div>
-     );
+    );
 }
 
-export default updateTask;
+//  updateTask; 
