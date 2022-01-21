@@ -11,9 +11,6 @@ function Navbar() {
                 <li>
                     <NavLink className={({ isActive }) => isActive ? 'active' : ""} to='/createTask'>Create Task</NavLink>
                 </li>
-                {/* <li>
-                    <NavLink className={({ isActive }) => isActive ? 'active' : ""} to='/updateTask'>Update Task</NavLink>
-                </li> */}
                 <li>
                     <NavLink className={({ isActive }) => isActive ? 'active' : ""} to='/listTasks'>List Tasks</NavLink>
                 </li>
