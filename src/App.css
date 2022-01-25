@@ -12,6 +12,7 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: sans-serif;
 }
 
 .card {
@@ -19,8 +20,4 @@
     margin: 5px;
     padding: 5px;
     height: fit-content;
-}
-
-h4 {
-    text-align: center;
 }
