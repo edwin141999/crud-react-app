@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { addDoc, collection, getDocs, getFirestore, query } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, query, updateDoc } from "firebase/firestore";
 
 const firebaseApp = initializeApp({
     apiKey: "AIzaSyAfcrvYb2_oKpqlUEyJmDdrBKO1v1OqvMs",
@@ -19,10 +19,21 @@ async function addTask(title, description) {
         title: title,
         description: description,
         done: false
-    })
+    }).catch(err => console.error(err))
     console.log("ID:", docRef.id, "data:", `${docRef.path}`);
 }
 
 const getTasks = async () => { return getDocs(query(orderCollection)) }
 
-export { addTask, getTasks }
+const getTask = async (id) => { return getDoc(doc(db, "tasks", id)) }
+
+async function updateTask(id, title, description, done) {
+    await updateDoc(doc(db, "tasks", id), { title: title, description: description, done: done })
+}
+
+async function deleteTask(id) {
+    let req = await deleteDoc(doc(db, "tasks", id))
+    console.log(req);
+}
+
+export { addTask, getTasks, updateTask, getTask, deleteTask }
