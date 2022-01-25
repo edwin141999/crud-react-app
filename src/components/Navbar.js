@@ -6,13 +6,13 @@ function Navbar() {
         <div>
             <ul>
                 <li>
-                    <NavLink className={({ isActive }) => isActive ? 'active' : ""} to='/'>Home</NavLink>
+                    <NavLink className="nav" to='/'>Home</NavLink>
                 </li>
                 <li>
-                    <NavLink className={({ isActive }) => isActive ? 'active' : ""} to='/createTask'>Create Task</NavLink>
+                    <NavLink className="nav" to='/createTask'>Create Task</NavLink>
                 </li>
                 <li>
-                    <NavLink className={({ isActive }) => isActive ? 'active' : ""} to='/listTasks'>List Tasks</NavLink>
+                    <NavLink className="nav" to='/listTasks'>List Tasks</NavLink>
                 </li>
             </ul>
         </div>);
