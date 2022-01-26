@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getTask, updateTask } from "../services/db";
+import '../pages/updateTask.css'
 
 export default function UpdateTask() {
     let { id } = useParams();
-    const { register, formState: { errors }, handleSubmit } = useForm()
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
+    const { handleSubmit } = useForm()
+    const navigate = useNavigate()
 
     useEffect(() => {
         getTaskData()
@@ -15,28 +17,23 @@ export default function UpdateTask() {
 
 
     const getTaskData = async () => {
-        console.log(id);
         const taskData = await getTask(id)
-        console.log(taskData.data());
         setTitle(taskData.data().title)
         setDescription(taskData.data().description)
     }
 
     const onUpdate = () => {
-        updateTask(id,title,description,false)
+        updateTask(id, title, description, false)
+        navigate('/listTasks')
     }
 
-
     return (
-        <div>
+        <div className="div">
             <form onSubmit={handleSubmit(onUpdate)}>
-                update task, id:{id}
-                <h4>Titulo</h4>
-                <input value={title} onChange={e => setTitle(e.target.value)} type={"text"} />
-                <p>{errors.title?.type === 'required' && 'Se requiere un titulo'}</p>
-                <h4>Descripcion</h4>
-                <input value={description} onChange={e => setDescription(e.target.value)} type={"text"} />
-                <p>{errors.description?.type === 'required' && 'Se requiere una descripcion'}</p>
+                <h2>Titulo</h2>
+                <input className="updateBody" value={title} onChange={e => setTitle(e.target.value)} type={"text"} />
+                <h2>Descripcion</h2>
+                <input className="updateBody" value={description} onChange={e => setDescription(e.target.value)} type={"text"} />
                 <button type="submit">Actualizar</button>
             </form>
         </div>

@@ -13,7 +13,6 @@ function ListTasks() {
 
     const getTasksData = async () => {
         const tasksData = await getTasks()
-        console.log(tasksData.docs);
         setTasks(tasksData.docs)
     }
 
