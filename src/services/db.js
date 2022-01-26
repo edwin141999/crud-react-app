@@ -32,8 +32,7 @@ async function updateTask(id, title, description, done) {
 }
 
 async function deleteTask(id) {
-    let req = await deleteDoc(doc(db, "tasks", id))
-    console.log(req);
+    return deleteDoc(doc(db, "tasks", id))
 }
 
 export { addTask, getTasks, updateTask, getTask, deleteTask }
