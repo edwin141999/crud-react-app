@@ -1,16 +1,12 @@
-.createBody {
+.updateBody {
     width: 100%;
     padding: 12px;
-    margin: 8px 0;
+    margin-bottom: 20px;
+    margin-top: 11px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    font-size: medium;
-}
-
-.errors {
-    padding-bottom: 15px;
     font-size: medium;
 }
 
