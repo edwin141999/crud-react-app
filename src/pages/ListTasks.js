@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { deleteTask, getTasks } from '../services/db';
+import '../pages/listTasks.css'
 
 function ListTasks() {
     const [tasks, setTasks] = useState(null)
@@ -21,25 +22,32 @@ function ListTasks() {
         getTasksData()
     }
 
-    return (<div>
-        {
-            tasks && tasks.map(e =>
-                <div className='card' key={e.id}>
-                    {/* <p>id: {e.id}</p> */}
-                    <h4 className='title'>Titulo</h4>
-                    <p className='title'>{e.data().title}</p>
-                    <h4 className='descripcion'>Descripcion</h4>
-                    <p>{e.data().description}</p>
-                    <h4 className='hecho'>Hecho</h4>
-                    <input type={'checkbox'} defaultChecked={e.data().done} onClick={() => { deleteAndUpdate(e.id) }} />
-                    <div>
-                        <button onClick={() => { navigate(`/updateTask/${e.id}`) }}>Update</button>
-                        <button onClick={() => { deleteAndUpdate(e.id) }}>Delete</button>
-                    </div>
-                </div>,
-            )
-        }
-    </div>);
+    return (
+        <div className='container'>
+            {
+                tasks && tasks.map(e =>
+                    <div className='card' key={e.id}>
+                        <div className='card_body'>
+                            <h3>Titulo</h3>
+                            <p>{e.data().title}</p>
+                            <div className='line'></div>
+                            <h3>Descripcion</h3>
+                            <p>{e.data().description}</p>
+                            <div className='line'></div>
+                            <label>
+                                <input type={'checkbox'} defaultChecked={e.data().done} onClick={() => { deleteAndUpdate(e.id) }} />Hecho
+                            </label>
+                            <div className='line'></div>
+                            <div className='card_button'>
+                                <button className='btnUpdate' onClick={() => { navigate(`/updateTask/${e.id}`) }}>Update</button>
+                                <button className='btnDelete' onClick={() => { deleteAndUpdate(e.id) }}>Delete</button>
+                            </div>
+                        </div>
+                    </div>,
+                )
+            }
+        </div>
+    );
 }
 
 export default ListTasks;
