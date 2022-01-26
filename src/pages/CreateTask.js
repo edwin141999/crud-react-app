@@ -15,12 +15,12 @@ function CreateTask() {
     return (
         <div className="div">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h4>Titulo</h4>
+                <h2>Titulo</h2>
                 <input type={"text"} {...register("title", { required: true })} />
-                <p>{errors.title?.type === 'required' && 'Se requiere un titulo'}</p>
-                <h4>Descripcion</h4>
+                <p className="errors">{errors.title?.type === 'required' && 'Se requiere un titulo'}</p>
+                <h2>Descripcion</h2>
                 <input type={"text"} {...register("description", { required: true })} />
-                <p>{errors.description?.type === 'required' && 'Se requiere una descripcion'}</p>
+                <p className="errors">{errors.description?.type === 'required' && 'Se requiere una descripcion'}</p>
                 <button type="submit">Crear</button>
             </form>
         </div>);
